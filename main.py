@@ -7,6 +7,7 @@ from tkinter import *
 from turtle import width
 import pyttsx3
 import random
+import threading
 
 
 engine = pyttsx3.init('sapi5')
@@ -29,7 +30,7 @@ def historyUpdate(text):
     TextBox.see(END)
     TextBox.config(state=DISABLED)
 
-def speak():
+def speakReal():
     # enteredText = TextBox.get("1.0", "end-1c")
     enteredText = Texts.get()
 
@@ -38,6 +39,10 @@ def speak():
 
     engine.say(enteredText)
     engine.runAndWait()
+
+def speak():
+    t1 = threading.Thread(target=speakReal)
+    t1.start()
 
 def changeVoice(e):
     newName = str(clicked.get())
