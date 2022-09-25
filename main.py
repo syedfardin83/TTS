@@ -15,6 +15,17 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice',voices[1].name)
 engine.setProperty ("rate", 178)
 
+def clearHistory():
+    print('Clearing')
+    TextBox.config(state=NORMAL)
+    TextBox.delete("1.0", "end")
+    # root.update()
+    TextBox.config(state=DISABLED)
+    historyUpdate('HISTORY: ')
+    # historyUpdate('HISTORY:')
+
+def clearText():
+    Texts.set('')
 
 def resetSpeed():
     s1.set(133)
@@ -74,8 +85,8 @@ root.geometry(window_size)
 # root.minsize("750x400")
 root.resizable(False,False)
 
-TextBox = Text(root, height=12, width=60, padx=10)
-TextBox.insert(END, "HISTORY: ")
+TextBox = Text(root, height=12, width=60, padx=10, xscrollcommand=SCROLL)
+TextBox.insert(END, "\nHISTORY: ")
 TextBox.config(state=DISABLED)
 TextBox.place(x=2, y=0)
 
@@ -116,5 +127,11 @@ b3.place(x=635, y=107)
 
 b2 = Button(root, text='Save Voice',state=DISABLED, command=saveVoice)
 b2.place(x=550, y=150)
+
+b4 = Button(root, text='Clear',command=clearText)
+b4.place(x=562, y=197)
+
+b5 = Button(root, text='Clear',command=clearHistory)
+b5.place(x=468,y=0)
 
 root.mainloop()
