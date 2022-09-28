@@ -52,8 +52,13 @@ def speakReal():
     engine.runAndWait()
 
 def speak():
+    global t1
     t1 = threading.Thread(target=speakReal)
     t1.start()
+
+# def stopVoice():
+#     t1.join()
+    # pass
 
 def changeVoice(e):
     newName = str(clicked.get())
@@ -80,6 +85,8 @@ window_size = window_width+"x"+window_height
 
 root = Tk()
 root.title("Text To Speech")
+# root.iconbitmap("logo.ico")
+root.iconbitmap("C:\\Users\\DELL\\Desktop\\Coding\\Python\\Text To Speech\\logo.ico")
 root.geometry(window_size)
 # root.maxsize("750x400")
 # root.minsize("750x400")
@@ -133,5 +140,8 @@ b4.place(x=562, y=197)
 
 b5 = Button(root, text='Clear',command=clearHistory)
 b5.place(x=468,y=0)
+
+# b6 = Button(root, text='Stop',command=stopVoice)
+# b6.place(x=610,y=197)
 
 root.mainloop()
